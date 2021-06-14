@@ -15,7 +15,15 @@ tinymce.init({
 });
 
 const pokemones = [];//desfinir un arreglo en javascrips
-const eliminar = function(){
+const eliminar = async function(){//esperar un resultado
+
+  let res = await swal.fire({
+    title:"desea enviar el pokemon al profesor oak",
+    showCancelButton: true,
+    confirmButton: "Enviar!"
+  });
+ if(res.isConfirmed){
+ 
   //1. saber que boton fue el que se apreto
   //2.saber el nro del boton
   let nro = this.nro;
@@ -23,6 +31,9 @@ const eliminar = function(){
   pokemones.splice(nro,1);
   4// recargar la tabla
   cargarTabla();
+ }else{
+   swal.fire("operacion cancelada");
+  }
 }; 
 const cargarTabla = ()=>{
   // 1-una referencia a la tabla( tabla a caragr)
@@ -98,7 +109,9 @@ let nombre = document.querySelector("#nombre-txt").value;
 let descripcion = tinymce.get("descripcion-txt").getContent();
 let legendario = document.querySelector("#legendario-si").checked;
 let tipo = document.querySelector("#tipo-select").value;
+let esValido = true;
 
+if(esValido){
 let pokemon ={};
 pokemon.nombre = nombre;
 pokemon.descripcion = descripcion;
@@ -108,4 +121,19 @@ pokemon.tipo = tipo;
 pokemones.push(pokemon);// datos  dentro de un arreglo
 cargarTabla();
 Swal.fire("REGISTRO EXITOSO!!","Pokemon registrado","info");
+}
+});
+
+
+document.querySelector("#limpiar-btn").addEventListener("click",()=>{
+  //limpiar los elementos
+  //limpia un input text
+document.querySelector("#nombre-txt").value = "";
+// limpiar un tinymce
+tinymce.get("descripcion-txt").setContent("");
+//limpia un radio button(seleccionando la 1 opcion)
+document.querySelector("#legendario-si").checked = true;
+//limpia un select( tabn seleccionando la 1 opcion)
+document.querySelector("#tipo-select").value="1";
+
 });
