@@ -111,6 +111,17 @@ let legendario = document.querySelector("#legendario-si").checked;
 let tipo = document.querySelector("#tipo-select").value;
 let esValido = true;
 
+document.querySelector("#nombre-txt").classList.remove("is-invalid");
+document.querySelector("#descripcion-txt").classList.remove("is-invalid");
+if(nombre.trim() == ""){
+  document.querySelector("#nombre-txt").classList.add("is-invalid");
+  esValido = false;
+}
+if(descripcion.trim() == ""){
+  document.querySelector("#descripcion-txt").classList.add("is-invalid");
+  esValido = false;
+}
+
 if(esValido){
 let pokemon ={};
 pokemon.nombre = nombre;

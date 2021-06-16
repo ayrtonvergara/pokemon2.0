@@ -31,13 +31,23 @@
         </div>
         <div class="card-body">
           <form id="pokemon-form">
-            <div class="mb-3"> <!--tipo de formulario-->
+            <div class="mb-3 has-validation" > <!--tipo de formulario-->
               <label for="nombre-txt" class="form-label">Nombre</label>
-              <input  type="text" id="nombre-txt" class="form-control">
+              <input  type="text" id="nombre-txt" class="form-control is-invalid">
+              <div class="invalid-feedback">
+
+                vuelva a intentar
+
+              </div>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 has-validation">
              <label for="descripcion-txt" class="form-label">descripcion</label>
-            <textarea  id="descripcion-txt" ></textarea> 
+            <textarea  id="descripcion-txt" class="is-invalid" ></textarea> 
+            <div class="invalid-feedback">
+
+              vuelva a intentar
+
+            </div>
             </div>
             <div class="mb-3"><!--tipo de botton-->
               <label for="legendario-rb">Legendario</label>
@@ -72,7 +82,7 @@
                <button type="submit" class="btn btn-dark">Registrar</button>
               </div>
               <div class="col text-end">
-                <button type="button" class="btn btn-info">Limpiar</button>
+                <button type="button" class="btn btn-info" id="limpiar-btn">Limpiar</button>
               </div>
               </div>
             </div>
